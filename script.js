@@ -42,11 +42,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
     if (id === "todo") {
       var target = document.getElementById("completed");
-      e.className = "fa fa-undo text-warning ml-auto";
+      this.className = "fa fa-undo ml-auto text-warning";
     } else {
       var target = document.getElementById("todo");
-      e.className = "fa fa-check text-success ml-auto";
+      this.className = "fa fa-check ml-auto text-success";
     }
+
     target.insertBefore(item, target.childNodes[0]);
   }
 
