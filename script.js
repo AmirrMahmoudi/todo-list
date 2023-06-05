@@ -57,3 +57,53 @@ document.addEventListener("DOMContentLoaded", () => {
     parent.removeChild(item);
   }
 });
+
+// Sort
+
+const btnSorts = document.getElementsByClassName("sort");
+
+
+let btnSortArray = [...btnSorts];
+
+btnSortArray.forEach((btnSort) => {
+  btnSort.addEventListener("click", sortList);
+});
+
+function sortList(e) {
+  let type = e.target.dataset.type;
+
+  let listSort, i, swiching, liElements, shouldSwitch;
+
+  // if (type == "todo") {
+  //   listSort = document.getElementById("todo");
+  // } else {
+  //   listSort = document.getElementById("completed");
+  // }
+
+  listSort =
+    type == "todo"
+      ? document.getElementById("todo")
+      : document.getElementById("completed");
+
+  swiching = true;
+
+  while (swiching) {
+    swiching = false;
+    liElements = listSort.getElementsByTagName("LI");
+    for (i = 0; i < liElements.length - 1; i++) {
+      shouldSwitch = false;
+      if (
+        liElements[i].innerHTML.toLocaleLowerCase() >
+        liElements[i + 1].innerHTML.toLocaleLowerCase()
+      ) {
+        shouldSwitch = true;
+        break;
+      }
+    }
+    if (shouldSwitch) {
+      liElements[i].parentNode.insertBefore(liElements[i + 1], liElements[i]);
+      swiching = true;
+    }
+  }
+}
+
